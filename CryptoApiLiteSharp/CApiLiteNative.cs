@@ -6,134 +6,223 @@ namespace CryptoApiLiteSharp
 {
     public static class CApiLiteNative
     {
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern 
-        bool CryptAcquireContext(
-            [Out] out CspSafeHandle phProv,
-            [In] string pszContainer,
-            [In] string pszProvider,
-            [In] uint dwProvType,
-            [In] uint dwFlags);
+        static CApiLiteNative()
+        {
+            CryptAcquireContext = CApiLiteNativeLinux.CryptAcquireContext;
+            CryptReleaseContext = CApiLiteNativeLinux.CryptReleaseContext;
 
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern 
-        bool CryptReleaseContext(
-            [In] IntPtr hProv,
-            [In] uint dwFlags);
+            PFXImportCertStore = CApiLiteNativeLinux.PFXImportCertStore;
+            CertFindCertificateInStore = CApiLiteNativeLinux.CertFindCertificateInStore;
+            CertCloseStore = CApiLiteNativeLinux.CertCloseStore;
+            CertFreeCertificateContext = CApiLiteNativeLinux.CertFreeCertificateContext;
+            CryptAcquireCertificatePrivateKey = CApiLiteNativeLinux.CryptAcquireCertificatePrivateKey;
 
-        [DllImport("capi20.so")]
-        public static extern 
-        int GetLastError();
+            CryptCreateHash = CApiLiteNativeLinux.CryptCreateHash;
+            CryptDestroyHash = CApiLiteNativeLinux.CryptDestroyHash;
+            CryptHashData = CApiLiteNativeLinux.CryptHashData;
+            CryptGetHashParam = CApiLiteNativeLinux.CryptGetHashParam;
+            CryptSetHashParam = CApiLiteNativeLinux.CryptSetHashParam;
+            CryptSignHash = CApiLiteNativeLinux.CryptSignHash;
 
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern 
-        int FormatMessage(
-            [In] uint dwFlags,
-            [In] IntPtr lpSource,
-            [In] int dwMessageId,
-            [In] int dwLanguageId, 
-            [Out] StringBuilder lpBuffer,
-            [In] int nSize,
-            [In] IntPtr vaListArguments);
+            GetLastError = CApiLiteNativeLinux.GetLastError;
+            FormatMessage = CApiLiteNativeLinux.FormatMessage;
+        }
 
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern 
-            CertStoreSafeHandle PFXImportCertStore(
-            [In] ref CRYPT_DATA_BLOB pPfx,
-            [In] IntPtr szPassword,
-            [In] uint dwFlags);
+        #region CryptAcquireContext
 
-        [DllImport("capi20.so", SetLastError = true)]
-        public static extern
-            CertContextSafeHandle CertFindCertificateInStore(
-            [In] CertStoreSafeHandle hCertStore,
-            [In] uint dwCertEncodingType,
-            [In] uint dwFindFlags,
-            [In] uint dwFindType,
-            [In] IntPtr pvFindPara,
-            [In] IntPtr pPrevCertContext);
+        public delegate 
+        bool CryptAcquireContextHandler(
+            out CspSafeHandle phProv,
+            string pszContainer,
+            string pszProvider,
+            uint dwProvType,
+            uint dwFlags);
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern
-        bool CertCloseStore(
-            [In] IntPtr hCertStore,
-            [In] uint dwFlags);
+        public static CryptAcquireContextHandler CryptAcquireContext { get; }
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern 
-        bool CertFreeCertificateContext(
-            [In] IntPtr pCertContext);
+        #endregion
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern
-        bool CryptAcquireCertificatePrivateKey(
-            [In] CertContextSafeHandle pCert,
-            [In] uint dwFlags,
-            [In] IntPtr pvReserved,
-            [Out] out CspSafeHandle phCryptProv,
-            [In, Out] ref uint pdwKeySpec,
-            [In, Out] ref bool pfCallerFreeProv);
+        #region CryptReleaseContext
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern
-        bool CryptCreateHash(
-            [In] CspSafeHandle hProv,
-            [In] uint algid,
-            [In] IntPtr hKey,
-            [In] int dwFlags,
-            [Out] out HashSafeHandle phHash);
+        public delegate 
+        bool CryptReleaseContextHandler(
+            IntPtr hProv,
+            uint dwFlags);
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern
-        bool CryptDestroyHash(
-          [In] IntPtr hHash
+        public static CryptReleaseContextHandler CryptReleaseContext { get; }
+
+        #endregion
+
+        #region PFXImportCertStore
+
+        public delegate 
+        CertStoreSafeHandle PFXImportCertStoreHandler(
+            ref CRYPT_DATA_BLOB pPfx,
+            IntPtr szPassword,
+            uint dwFlags);
+
+        public static PFXImportCertStoreHandler PFXImportCertStore { get; }
+
+        #endregion
+
+        #region CertFindCertificateInStore
+
+        public delegate 
+        CertContextSafeHandle CertFindCertificateInStoreHandler(
+            CertStoreSafeHandle hCertStore,
+            uint dwCertEncodingType,
+            uint dwFindFlags,
+            uint dwFindType,
+            IntPtr pvFindPara,
+            IntPtr pPrevCertContext);
+
+        public static CertFindCertificateInStoreHandler CertFindCertificateInStore { get; }
+
+        #endregion
+
+        #region CertCloseStore
+
+        public delegate
+        bool CertCloseStoreHandler(
+          IntPtr hCertStore,
+          uint dwFlags
         );
 
+        public static CertCloseStoreHandler CertCloseStore { get; }
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern
-        bool CryptHashData(
-            [In] HashSafeHandle hHash,
-            [In] IntPtr pbData,
-            [In] int dataLen,
-            [In] int flags);
+        #endregion
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern 
-        bool CryptGetHashParam(
-            [In] HashSafeHandle hHash,
-            [In] uint dwParam,
-            [In, Out] IntPtr pbData,
-            [In, Out] ref int pdwDataLen,
-            [In] int dwFlags);
+        #region CertFreeCertificateContext
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern
-        bool CryptSetHashParam(
-            [In] HashSafeHandle hHash,
-            [In] uint dwParam,
-            [In] IntPtr pbData,
-            [In] int dwFlags);
+        public delegate
+        bool CertFreeCertificateContextHandler(
+          IntPtr pCertContext
+        );
 
-        [DllImport("capi20.so", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern 
-        bool CryptSignHash(
-            [In] HashSafeHandle hHash,
-            [In] uint keySpec,
-            [In] IntPtr description,
-            [In] uint flags,
-            [Out] IntPtr signature,
-            [In, Out] ref int signatureLen);
+        public static CertFreeCertificateContextHandler CertFreeCertificateContext { get; }
+
+        #endregion
+
+        #region CryptAcquireCertificatePrivateKey
+
+        public delegate 
+        bool CryptAcquireCertificatePrivateKeyHandler(
+            CertContextSafeHandle pCert,
+            uint dwFlags,
+            IntPtr pvReserved,
+            out CspSafeHandle phCryptProv,
+            ref uint pdwKeySpec,
+            ref bool pfCallerFreeProv);
+
+        public static CryptAcquireCertificatePrivateKeyHandler CryptAcquireCertificatePrivateKey { get; }
+
+        #endregion
+
+        #region CryptCreateHash
+
+        public delegate
+        bool CryptCreateHashHandler(
+          CspSafeHandle hProv,
+          uint algid,
+          IntPtr hKey,
+          int dwFlags,
+          out HashSafeHandle phHash
+        );
+
+        public static CryptCreateHashHandler CryptCreateHash { get; }
+
+        #endregion
+
+        #region CryptDestroyHash
+
+        public delegate
+        bool CryptDestroyHashHandler(
+          IntPtr hHash
+        );
+
+        public static CryptDestroyHashHandler CryptDestroyHash{ get; }
+
+        #endregion
+
+        #region CryptHashData
+
+        public delegate
+        bool CryptHashDataHandler(
+           HashSafeHandle hHash,
+           IntPtr pbData,
+           int dataLen,
+           int flags
+        );
+
+        public static CryptHashDataHandler CryptHashData { get; }
+
+        #endregion
+
+        #region CryptGetHashParam
+
+        public delegate
+        bool CryptGetHashParamHandler(
+            HashSafeHandle hHash,
+            uint dwParam,
+            IntPtr pbData,
+            ref int pdwDataLen,
+            int dwFlags);
+
+        public static CryptGetHashParamHandler CryptGetHashParam { get; }
+
+        #endregion
+
+        #region CryptSetHashParam
+
+        public delegate
+        bool CryptSetHashParamHandler(
+             HashSafeHandle hHash,
+             uint dwParam,
+             IntPtr pbData,
+             int dwFlags);
+
+        public static CryptSetHashParamHandler CryptSetHashParam { get; }
+
+        #endregion
+
+        #region CryptSignHash
+
+        public delegate
+        bool CryptSignHashHandler(
+             HashSafeHandle hHash,
+             uint keySpec,
+             IntPtr description,
+             uint flags,
+             IntPtr signature,
+             ref int signatureLen);
+
+        public static CryptSignHashHandler CryptSignHash { get; }
+
+        #endregion
+
+        #region GetLastError
+
+        public delegate 
+        int GetLastErrorHandler();
+
+        public static GetLastErrorHandler GetLastError { get; }
+
+        #endregion
+
+        #region FormatMessage
+
+        public delegate 
+        int FormatMessageHandler(
+            uint dwFlags,
+            IntPtr lpSource,
+            int dwMessageId,
+            int dwLanguageId,
+            StringBuilder lpBuffer,
+            int nSize,
+            IntPtr vaListArguments);
+
+        public static FormatMessageHandler FormatMessage { get; }
+
+        #endregion
     }
 }
