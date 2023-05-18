@@ -9,7 +9,7 @@ namespace CryptoApiLiteSharp
         [DllImport("capi20", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "CryptAcquireContextA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern 
-        bool CryptAcquireContext(
+        bool CryptAcquireContextA(
             [Out] out CspSafeHandle phProv,
             [In] string pszContainer,
             [In] string pszProvider,
@@ -128,7 +128,7 @@ namespace CryptoApiLiteSharp
         [DllImport("capi20", SetLastError = true, CharSet = CharSet.Ansi, EntryPoint = "CryptSignHashA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern 
-        bool CryptSignHash(
+        bool CryptSignHashA(
             [In] HashSafeHandle hHash,
             [In] uint keySpec,
             [In] IntPtr description,
