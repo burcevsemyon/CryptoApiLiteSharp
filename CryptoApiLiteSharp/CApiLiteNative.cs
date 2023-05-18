@@ -6,7 +6,7 @@ namespace CryptoApiLiteSharp
 {
     public static class CApiLiteNative
     {
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("capi20", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "CryptAcquireContextA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern 
         bool CryptAcquireContext(
@@ -16,18 +16,18 @@ namespace CryptoApiLiteSharp
             [In] uint dwProvType,
             [In] uint dwFlags);
 
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("capi20", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern 
         bool CryptReleaseContext(
             [In] IntPtr hProv,
             [In] uint dwFlags);
 
-        [DllImport("capi20.so")]
+        [DllImport("capi20")]
         public static extern 
         int GetLastError();
 
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("capi20", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern 
         int FormatMessage(
             [In] uint dwFlags,
@@ -38,14 +38,14 @@ namespace CryptoApiLiteSharp
             [In] int nSize,
             [In] IntPtr vaListArguments);
 
-        [DllImport("capi20.so", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("capi20", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern 
             CertStoreSafeHandle PFXImportCertStore(
             [In] ref CRYPT_DATA_BLOB pPfx,
             [In] IntPtr szPassword,
             [In] uint dwFlags);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         public static extern
             CertContextSafeHandle CertFindCertificateInStore(
             [In] CertStoreSafeHandle hCertStore,
@@ -55,20 +55,20 @@ namespace CryptoApiLiteSharp
             [In] IntPtr pvFindPara,
             [In] IntPtr pPrevCertContext);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CertCloseStore(
             [In] IntPtr hCertStore,
             [In] uint dwFlags);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern 
         bool CertFreeCertificateContext(
             [In] IntPtr pCertContext);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CryptAcquireCertificatePrivateKey(
@@ -79,7 +79,7 @@ namespace CryptoApiLiteSharp
             [In, Out] ref uint pdwKeySpec,
             [In, Out] ref bool pfCallerFreeProv);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CryptCreateHash(
@@ -89,7 +89,7 @@ namespace CryptoApiLiteSharp
             [In] int dwFlags,
             [Out] out HashSafeHandle phHash);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CryptDestroyHash(
@@ -97,7 +97,7 @@ namespace CryptoApiLiteSharp
         );
 
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CryptHashData(
@@ -106,7 +106,7 @@ namespace CryptoApiLiteSharp
             [In] int dataLen,
             [In] int flags);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern 
         bool CryptGetHashParam(
@@ -116,7 +116,7 @@ namespace CryptoApiLiteSharp
             [In, Out] ref int pdwDataLen,
             [In] int dwFlags);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CryptSetHashParam(
@@ -125,7 +125,7 @@ namespace CryptoApiLiteSharp
             [In] IntPtr pbData,
             [In] int dwFlags);
 
-        [DllImport("capi20.so", SetLastError = true)]
+        [DllImport("capi20", SetLastError = true, CharSet = CharSet.Ansi, EntryPoint = "CryptSignHashA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern 
         bool CryptSignHash(
