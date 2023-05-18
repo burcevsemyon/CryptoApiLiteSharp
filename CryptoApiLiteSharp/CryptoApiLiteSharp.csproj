@@ -3,10 +3,32 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>CryptoAPI Lite (CAPILite) C# P\Invoke signatures</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>Сигнатуры методов для C# P/Invoke КРИПТО-ПРО CryptoAPI Lite (CAPILite) v5 для Linux</Description>
+    <Authors>Burcev Semyon</Authors>
+    <Copyright>Burcev Semyon</Copyright>
+    <RepositoryUrl>https://github.com/burcevsemyon/CryptoApiLiteSharp</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>cprypto-pro; gost crypto; linux</PackageTags>
+    <PackageProjectUrl>https://github.com/burcevsemyon/CryptoApiLiteSharp</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

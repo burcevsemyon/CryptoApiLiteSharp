@@ -1,23 +1,23 @@
 # CryptoApiLiteSharp
 
-Сигнатуры методов для C# P/Invoke КРИПТО-ПРО CryptoAPI Lite (CAPILite) v5 для Linux
-- **Функции работы с провайдером**	
+РЎРёРіРЅР°С‚СѓСЂС‹ РјРµС‚РѕРґРѕРІ РґР»СЏ C# P/Invoke РљР РРџРўРћ-РџР Рћ CryptoAPI Lite (CAPILite) v5 РґР»СЏ Linux
+- **Р¤СѓРЅРєС†РёРё СЂР°Р±РѕС‚С‹ СЃ РїСЂРѕРІР°Р№РґРµСЂРѕРј**	
 	CryptAcquireContext  
 	CryptReleaseContext  
-- **Функции работы с PFX (PKCS#12) файлами**	
+- **Р¤СѓРЅРєС†РёРё СЂР°Р±РѕС‚С‹ СЃ PFX (PKCS#12) С„Р°Р№Р»Р°РјРё**	
  
     PFXImportCertStore  
-- **Функции обработки сертификатов**
+- **Р¤СѓРЅРєС†РёРё РѕР±СЂР°Р±РѕС‚РєРё СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ**
 
 	CertFindCertificateInStore  
     CertFreeCertificateContext 
-- **Функции работы c хранилищем сертификатов**
+- **Р¤СѓРЅРєС†РёРё СЂР°Р±РѕС‚С‹ c С…СЂР°РЅРёР»РёС‰РµРј СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ**
 
 	CertCloseStore  
-- **Функции генерации и обмена ключа**  
+- **Р¤СѓРЅРєС†РёРё РіРµРЅРµСЂР°С†РёРё Рё РѕР±РјРµРЅР° РєР»СЋС‡Р°**  
 
     CryptAcquireCertificatePrivateKey  
-- **Функции обработки хэша и цифровой подписи**  
+- **Р¤СѓРЅРєС†РёРё РѕР±СЂР°Р±РѕС‚РєРё С…СЌС€Р° Рё С†РёС„СЂРѕРІРѕР№ РїРѕРґРїРёСЃРё**  
 
     CryptCreateHash  
 	CryptDestroyHash  
@@ -27,4 +27,4 @@
 	CryptSignHash
 
 
-Описание методов и параметров можно узнать на справочной [странице](https://cpdn.cryptopro.ru/default.asp?url=content/cades/indexpage.html) КРИПТО-ПРО или [MSDN](https://learn.microsoft.com/en-us/windows/win32/seccrypto/cryptography-functions)
+РћРїРёСЃР°РЅРёРµ РјРµС‚РѕРґРѕРІ Рё РїР°СЂР°РјРµС‚СЂРѕРІ РјРѕР¶РЅРѕ СѓР·РЅР°С‚СЊ РЅР° СЃРїСЂР°РІРѕС‡РЅРѕР№ [СЃС‚СЂР°РЅРёС†Рµ](https://cpdn.cryptopro.ru/default.asp?url=content/cades/indexpage.html) РљР РРџРўРћ-РџР Рћ РёР»Рё [MSDN](https://learn.microsoft.com/en-us/windows/win32/seccrypto/cryptography-functions)
