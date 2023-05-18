@@ -1,6 +1,6 @@
 # CryptoApiLiteSharp
 
-Сигнатуры методов для C# P/Invoke КРИПТО-ПРО CAPILite для Linux
+Сигнатуры методов для C# P/Invoke КРИПТО-ПРО CryptoAPI Lite (CAPILite) v4 для Linux
 - **Функции работы с провайдером**	
 	CryptAcquireContext  
 	CryptReleaseContext  
