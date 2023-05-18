@@ -8,7 +8,7 @@ namespace CryptoApiLiteSharp
     {
         private const string LIB_NAME = "capi20";
 
-        [DllImport(LIB_NAME, CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(LIB_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "CryptAcquireContextA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CryptAcquireContext(
@@ -127,7 +127,7 @@ namespace CryptoApiLiteSharp
             [In] IntPtr pbData,
             [In] int dwFlags);
 
-        [DllImport(LIB_NAME, SetLastError = true)]
+        [DllImport(LIB_NAME, SetLastError = true, CharSet = CharSet.Ansi, EntryPoint = "CryptSignHashA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern
         bool CryptSignHash(
