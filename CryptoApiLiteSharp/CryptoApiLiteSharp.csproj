@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/burcevsemyon/CryptoApiLiteSharp</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>cprypto-pro; gost crypto; linux</PackageTags>
+    <PackageTags>crypto-pro; gost crypto; linux</PackageTags>
     <PackageProjectUrl>https://github.com/burcevsemyon/CryptoApiLiteSharp</PackageProjectUrl>
   </PropertyGroup>
 
