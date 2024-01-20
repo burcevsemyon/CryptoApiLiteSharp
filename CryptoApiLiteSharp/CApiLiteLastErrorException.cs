@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace CryptoApiLiteSharp
 {
     public class CApiLiteLastErrorException: Exception
     {
-        public CApiLiteLastErrorException():
+        public CApiLiteLastErrorException() :
             base(GetMessage(CApiLiteNative.GetLastError()))
+        {
+        }
+
+        public CApiLiteLastErrorException(string failFuncName):
+            base($"{failFuncName}: {GetMessage(CApiLiteNative.GetLastError())}")
         {
         }
 

@@ -14,6 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>crypto-pro; gost crypto; linux</PackageTags>
     <PackageProjectUrl>https://github.com/burcevsemyon/CryptoApiLiteSharp</PackageProjectUrl>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
